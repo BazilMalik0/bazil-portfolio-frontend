@@ -18,6 +18,9 @@ const Contact = () => {
     message: "",
   });
 
+  // ✅ NEW: Submitting State
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // ✅ SNACKBAR STATE (FIELD + MESSAGE)
   const [snackbar, setSnackbar] = useState({
     field: "",
@@ -95,6 +98,9 @@ const Contact = () => {
 
     if (!validate()) return;
 
+    // ✅ START LOADING
+    setIsSubmitting(true);
+
     try {
       const res = await fetch(
         "https://bazil-portfolio-backend-1.onrender.com/contact",
@@ -146,6 +152,9 @@ const Contact = () => {
       setTimeout(() => {
         setToastMessage("");
       }, 3000);
+    } finally {
+      // ✅ STOP LOADING (Re-enables button)
+      setIsSubmitting(false);
     }
   };
   return (
@@ -258,9 +267,13 @@ const Contact = () => {
               )}
             </div>
 
-            <button type="submit" className={styles.submitBtn}>
-              Send Message
-              <IoMdSend />
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+              {!isSubmitting && <IoMdSend />}
             </button>
           </form>
 
