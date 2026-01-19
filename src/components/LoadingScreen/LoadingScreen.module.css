@@ -1,0 +1,284 @@
+.loaderWrapper {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #0a0a0a, #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.loaderWrapper::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  pointer-events: none;
+
+  background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.25) 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1.5px),
+    repeating-radial-gradient(
+      circle at center,
+      rgba(255, 30, 30, 0.08) 0px,
+      rgba(255, 30, 30, 0.15) 3px,
+      rgba(255, 30, 30, 0.02) 8px,
+      transparent 22px
+    );
+
+  background-size: 120px 120px, 200px 200px, 100% 100%;
+  filter: blur(0.4px);
+  opacity: 0.9;
+
+  transform-origin: center;
+  animation: springFlow 8s linear infinite, tunnelRotate 40s linear infinite;
+}
+
+@keyframes springFlow {
+  0% {
+    background-position: 0 0, 0 0, center;
+    opacity: 1;
+  }
+
+  50% {
+    background-position: 60px 90px, -80px -60px, center;
+    opacity: 1;
+  }
+
+  100% {
+    background-position: 120px 180px, -160px -120px, center;
+    opacity: 1;
+  }
+}
+@keyframes tunnelRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.svgWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svgCenterText {
+  position: absolute;
+  top: 88%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  pointer-events: none; /* so SVG interactions remain clean */
+  text-align: center;
+}
+
+.infinity {
+  width: 300px;
+  height: 120px;
+}
+
+/* 🔴 STATIC FULL SHAPE */
+.basePath {
+  fill: none;
+  stroke: #ff1e1e;
+  stroke-width: 6;
+  opacity: 0.25;
+}
+
+/* 🔴 MOVING DARK RED LINE INSIDE */
+/* 🔴 MOVING DARK RED LINE (LOADING STYLE) */
+.movingPath {
+  fill: none;
+  stroke: #ff1e1e; /* Brighter red for the fill effect */
+  stroke-width: 6;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 10px rgba(255, 30, 30, 0.8));
+
+  /* Start with a dash of 0 (invisible) and a gap of 640 (full length) */
+  stroke-dasharray: 0 640;
+  stroke-dashoffset: 0;
+
+  /* Use 'forwards' to make it stay filled at the end */
+  animation: fillLoading 6s linear forwards;
+}
+
+@keyframes fillLoading {
+  0% {
+    /* No line visible */
+    stroke-dasharray: 0 640;
+    stroke: #b30000;
+  }
+  20% {
+    /* 1.2s: Starts moving slowly */
+    stroke-dasharray: 120 640;
+  }
+  50% {
+    /* 3s: Halfway through the infinity loop */
+    stroke-dasharray: 320 640;
+    stroke: #ff1e1e;
+  }
+  80% {
+    /* 4.8s: Near the end, moving faster */
+    stroke-dasharray: 520 640;
+  }
+  100% {
+    /* 6s: Entire shape is fully drawn/solid */
+    stroke-dasharray: 640 640;
+    filter: drop-shadow(0 0 15px rgba(255, 30, 30, 1));
+  }
+}
+/* ✅ WELCOME TEXT */
+.welcomeText {
+  position: relative;
+  white-space: nowrap;
+  background: linear-gradient(
+    to bottom,
+    #4a0000 0%,
+    #7a0c0c 30%,
+    #cc1515 55%,
+    #ff1e1e 70%,
+    #ffffff 100%
+  );
+
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: liquidFill 6s ease-in forwards;
+  animation-delay: 0s, 6s;
+}
+@keyframes liquidFill {
+  0% {
+    background-size: 100% 0%;
+  }
+
+  100% {
+    background-size: 100% 130%; /* 🔥 overfill ensures NO white remains */
+  }
+}
+
+.welcomeText::before,
+.welcomeText::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.percentage {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #ff1e1e;
+  letter-spacing: 2px;
+  font-family: monospace;
+  animation: percentPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes percentPulse {
+  0% {
+    text-shadow: 0 0 8px rgba(255, 30, 30, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 18px rgba(255, 30, 30, 1);
+  }
+}
+/* ============================= */
+/* 📱 Small Mobile (≤ 480px) */
+/* ============================= */
+@media (max-width: 480px) {
+  .infinity {
+    width: 220px;
+    height: 90px;
+  }
+
+  .welcomeText {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-align: center;
+  }
+
+  .percentage {
+    font-size: 16px;
+  }
+}
+
+/* ============================= */
+/* 📱 Large Mobile & Small Tablets (481px–768px) */
+/* ============================= */
+@media (max-width: 768px) {
+  .infinity {
+    width: 250px;
+    height: 100px;
+  }
+
+  .welcomeText {
+    font-size: 13px;
+  }
+
+  .percentage {
+    font-size: 17px;
+  }
+}
+
+/* ============================= */
+/* 💻 Tablets & Small Laptops (769px–1024px) */
+/* ============================= */
+@media (max-width: 1024px) {
+  .infinity {
+    width: 280px;
+    height: 110px;
+  }
+}
+
+/* ============================= */
+/* 🍎 iOS Safari Rendering Fix */
+/* ============================= */
+@supports (-webkit-touch-callout: none) {
+  .movingPath {
+    stroke-width: 5.5; /* Slightly thinner for Retina clarity */
+  }
+}
+
+/* ============================= */
+/* 🤖 Android / Touch Devices */
+/* ============================= */
+@media (pointer: coarse) {
+  .welcomeText,
+  .percentage {
+    letter-spacing: 2px;
+  }
+}
+
+/* ============================= */
+/* 🖥️ Large Screens (≥ 1400px) */
+/* ============================= */
+@media (min-width: 1400px) {
+  .infinity {
+    width: 340px;
+    height: 140px;
+  }
+
+  .percentage {
+    font-size: 20px;
+  }
+}

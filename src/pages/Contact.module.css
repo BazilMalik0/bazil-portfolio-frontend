@@ -1,0 +1,436 @@
+.contactSection {
+  color: white;
+  padding: 40px 8%;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.mainTitle {
+  margin-left: 4rem;
+  font-size: 3rem;
+  font-family: "Agency FB";
+  letter-spacing: 2px;
+  background: linear-gradient(to right, #ffffff, #ff3344);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sideSubtitle {
+  font-family: "Agency FB";
+  letter-spacing: 2px;
+  color: #888;
+  font-size: 2rem;
+}
+
+.mapContainer {
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #333;
+  margin-bottom: 4rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.formTitle {
+  text-align: center;
+  color: #888;
+  margin-bottom: 3rem;
+  font-family: cursive;
+  font-weight: 400;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Info Column */
+.infoItem {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.iconBox {
+  color: #ff3344;
+  font-size: 1.8rem;
+}
+
+.infoItem h4 {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.infoItem p {
+  color: #aaa;
+  font-size: 0.85rem;
+}
+
+/* Form Column */
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Maintain your gap */
+}
+
+.inputWrapper {
+  position: relative; /* Anchor for the floating error */
+}
+
+.customError {
+  position: absolute;
+  bottom: -38px; /* Appears below the input */
+  left: 10px;
+  background: white;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+}
+
+/* The little triangle at the top of the error box */
+.customError::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 15px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid white;
+}
+
+.errorIcon {
+  background: #ff9800; /* Orange color from your image */
+  color: white;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 2px;
+  font-size: 12px;
+}
+.input,
+.textarea {
+  background: #111;
+  border: 1px solid #333;
+  padding: 12px 15px;
+  border-radius: 5px;
+  color: white;
+  outline: none;
+  transition: border 0.3s;
+  width: 100%;
+}
+
+.textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+.snackbar {
+  position: absolute;
+  top: 100%;
+  left: 12px;
+  margin-top: 8px;
+  background: #fff;
+  color: #b71c1c;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #d32f2f;
+  font-size: 0.85rem;
+  box-shadow: 0 6px 18px rgba(211, 47, 47, 0.35);
+  z-index: 10;
+  animation: fadeIn 0.2s ease;
+}
+
+.snackbarArrow {
+  position: absolute;
+  top: -6px;
+  left: 18px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-left: 1px solid #d32f2f;
+  border-top: 1px solid #d32f2f;
+  transform: rotate(45deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #ff3344;
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #ff3344;
+  color: black;
+  border: none;
+  padding: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submitBtn:hover {
+  background: #e62e3d;
+  box-shadow: 0 0 15px rgba(255, 51, 68, 0.4);
+}
+
+/* Address Column */
+.addressBox {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.locationIcon {
+  color: red;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.addressBox p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.note {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  color: #ff3344; /* Matches your theme */
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+.noteIcon {
+  color: red;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+.error {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.toastMessage {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: #ff3344;
+  border: 1px solid #ff3344;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 8px 25px rgba(211, 47, 47, 0.35);
+  z-index: 9999;
+  animation: toastSlideDown 3s ease forwards;
+}
+
+/* Smooth entrance & exit */
+@keyframes toastSlideDown {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+}
+
+/* ============================= */
+/* 📱 Small Mobile (≤ 480px) */
+/* ============================= */
+@media (max-width: 480px) {
+  .contactSection {
+    padding: 30px 5%;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+  }
+
+  .mainTitle {
+    font-size: 2.1rem;
+  }
+
+  .sideSubtitle {
+    font-size: 1.4rem;
+  }
+
+  .formTitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .grid {
+    gap: 3rem;
+  }
+
+  .input,
+  .textarea {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .submitBtn {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .customError {
+    font-size: 12px;
+    bottom: -42px;
+  }
+
+  .toastMessage {
+    width: 90%;
+    font-size: 0.85rem;
+    padding: 12px 16px;
+  }
+}
+
+/* ============================= */
+/* 📱 Large Mobile & Small Tablets (481px–768px) */
+/* ============================= */
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 35px 6%;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .mainTitle {
+    font-size: 2.4rem;
+  }
+
+  .sideSubtitle {
+    font-size: 1.6rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .infoItem h4 {
+    font-size: 0.95rem;
+  }
+
+  .infoItem p {
+    font-size: 0.8rem;
+  }
+
+  .locationIcon {
+    font-size: 1.8rem;
+  }
+}
+
+/* ============================= */
+/* 💻 Tablets & Small Laptops (769px–1024px) */
+/* ============================= */
+@media (max-width: 1024px) {
+  .contactSection {
+    padding: 40px 7%;
+  }
+
+  .mainTitle {
+    font-size: 2.7rem;
+  }
+
+  .sideSubtitle {
+    font-size: 1.8rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================= */
+/* 🍎 iOS Fixes */
+/* ============================= */
+@supports (-webkit-touch-callout: none) {
+  .input,
+  .textarea {
+    font-size: 16px; /* Prevents iOS zoom */
+  }
+}
+
+/* ============================= */
+/* 🤖 Android Touch Optimization */
+/* ============================= */
+@media (pointer: coarse) {
+  .submitBtn {
+    padding: 16px;
+  }
+
+  .input,
+  .textarea {
+    padding: 14px 16px;
+  }
+}
+
+/* ============================= */
+/* 🖥️ Ultra-Wide Screens (≥ 1400px) */
+/* ============================= */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1350px;
+  }
+
+  .mainTitle {
+    font-size: 3.4rem;
+  }
+}

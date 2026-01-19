@@ -1,0 +1,514 @@
+.hero {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5% 8%;
+
+  min-height: 80vh;
+}
+
+.content {
+  max-width: 50%;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-family: "Agency FB";
+  letter-spacing: 2px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  /* Horizontal gradient across the entire text */
+  background: linear-gradient(
+    to right,
+    #ffffff 0%,
+    /* Pure white at the start (C...) */ #ffffff 5%,
+    /* Stays white for a tiny bit */ #ff3344b3 15%,
+    /* Starts fading to red very early (...O...) */ #ff3344 40%,
+    /* Becomes solid neon red */ #881111 100%
+      /* Continues to a much darker red at the end */
+  );
+
+  /* Masking properties to make the gradient apply to the text */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  /* Optional: adds a very subtle glow to the red parts */
+  filter: drop-shadow(0 0 5px rgba(255, 51, 68, 0.2));
+}
+
+.subtitle {
+  color: #888;
+  font-family: "Agency FB";
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem; /* Prevents layout jump while typing */
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.description {
+  color: #aaa;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.btnGroup {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  text-decoration: none; /* REQUIRED: Removes default link underline */
+  display: inline-flex; /* REQUIRED: Allows padding and centering to work */
+  align-items: center; /* Centers text vertically */
+  justify-content: center; /* Centers text horizontally */
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.primaryBtn {
+  background: #ff3344;
+  color: black;
+  border: none;
+  padding: 12px 30px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 51, 68, 0.4);
+  transition: all 0.3s ease;
+
+  /* Important for the Shine Effect */
+  position: relative;
+  overflow: hidden;
+
+  /* Layout for Icon and Text */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Added slight gap for better look */
+
+  /* The Calling Pulse Animation */
+  animation: pulse 2s infinite;
+}
+
+/* The Shine Sweep Effect */
+.primaryBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.primaryBtn:hover::before {
+  left: 100%;
+}
+
+.primaryBtn:hover {
+  background: #e62e3d;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(255, 51, 68, 0.6);
+  color: black;
+}
+
+/* Keyframes for the "Calling" Pulse */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 51, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 51, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 51, 68, 0);
+  }
+}
+.secondaryBtn {
+  background: transparent;
+  color: white;
+  border: 1px solid #ff3344;
+  padding: 12px 30px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.secondaryBtn:hover {
+  color: black;
+  background: #ff3344; /* Changed to match primary on hover as you requested */
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(255, 51, 68, 0.6);
+}
+.scene {
+  width: 455px;
+  height: 455px;
+  display: flex;
+  justify-content: center;
+  perspective: 2000px;
+  background: transparent;
+}
+
+.springWrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  transform-style: preserve-3d;
+  transform: rotateX(20deg) rotateY(-10deg);
+}
+
+/* ============================= */
+/* 🖼 PHOTO (The Lead Head) */
+/* ============================= */
+.photoContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid #ff3344;
+  box-shadow: 0 0 30px #ff3344;
+  z-index: 1000;
+  --index: 0;
+
+  /* 🔥 FIX 1: Match the 0% keyframe exactly */
+  transform: translate(-50%, -50%) translateZ(0) translateX(-40px)
+    rotateY(-20deg);
+
+  /* Use 'forwards' to ensure it doesn't snap back if animation ends */
+  animation: snakeSway 3s ease-in-out infinite;
+}
+
+.profileImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================= */
+/* 🔥 LONG SPRING RINGS */
+/* ============================= */
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 4px solid rgba(255, 51, 68, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(255, 51, 68, 0.4);
+  pointer-events: none;
+
+  /* 🔥 FIX 2: Hardcode the starting position of the animation tail */
+  /* This ensures that on refresh, they are ALREADY in the snake shape */
+  transform: translate(-50%, -50%) translateZ(calc(var(--index) * -20px))
+    translateX(-40px) rotateY(-20deg);
+
+  opacity: calc(1 - (var(--index) * 0.025));
+
+  animation: snakeSway 3s ease-in-out infinite;
+  /* Keep the delay to maintain the snake wave */
+  animation-delay: calc(var(--index) * 0.1s);
+}
+
+/* ============================= */
+/* 🐍 THE SWAY ANIMATION */
+/* ============================= */
+@keyframes snakeSway {
+  /* 0% and 100% MUST match the static transform above exactly */
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateZ(calc(var(--index) * -20px))
+      translateX(-40px) rotateY(-20deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateZ(calc(var(--index) * -20px))
+      translateX(40px) rotateY(20deg);
+  }
+}
+.whatIDoTitle {
+  font-family: "Agency FB";
+  letter-spacing: 2px;
+  font-size: 3rem;
+  display: flex; /* Ensures they stay on one line */
+  align-items: center;
+}
+
+/* This part handles the White to Red Gradient */
+.gradientText {
+  background: linear-gradient(to right, #ffffff, #ff3344);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* This part handles the solid Grey color */
+.grayText {
+  color: #ff3344;
+}
+.service {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.service:last-child {
+  margin-bottom: 0;
+}
+
+.icon {
+  font-size: 1.6rem;
+  color: #ff3344;
+  min-width: 40px;
+}
+
+.service h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.service p {
+  color: #aaa;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Card Style */
+.card {
+  background: #0a0a0a;
+  padding: 2rem;
+  border-radius: 20px;
+
+  border: 4px solid #ff3344;
+  box-shadow: 0 0 100px #ff3344;
+
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 140px rgba(255, 51, 68, 0.9);
+}
+
+/* Icon */
+.card .icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #ff3344;
+}
+
+/* Title */
+.card h4 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+}
+
+/* Text */
+.card p {
+  color: #aaa;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+/* ============================= */
+/* 💻 Collapse / Menu Shift (≤ 1100px) */
+/* ============================= */
+@media (max-width: 1100px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 10% 5%;
+    height: auto;
+    min-height: 100vh;
+    justify-content: center;
+  }
+  .subtitle {
+    font-size: 1.6rem;
+    justify-content: center;
+  }
+  .content {
+    max-width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  .btnGroup {
+    justify-content: center;
+  }
+
+  /* Scale down the 3D Spring for smaller tablets */
+  .scene {
+    width: 350px;
+    height: 350px;
+  }
+
+  .springWrapper {
+    width: 250px;
+    height: 250px;
+  }
+
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ============================= */
+/* 💻 Tablets & Small Laptops (≤ 1024px) */
+/* ============================= */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 3rem;
+  }
+  .subtitle {
+    font-size: 1.6rem;
+    justify-content: center;
+  }
+  .whatIDoTitle {
+    font-size: 2.5rem;
+    justify-content: center;
+  }
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .scene {
+    width: 340px;
+    height: 340px;
+  }
+
+  .springWrapper {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+/* ============================= */
+/* 📱 Large Mobile & Tablets (≤ 768px) */
+/* ============================= */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.6rem;
+  }
+
+  .subtitle {
+    font-size: 1.6rem;
+    justify-content: center;
+  }
+
+  .cardGrid {
+    grid-template-columns: 1fr; /* Stack cards vertically */
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .scene {
+    width: 330px;
+    height: 330px;
+  }
+
+  .springWrapper {
+    width: 230px;
+    height: 230px;
+  }
+}
+
+/* ============================= */
+/* 📱 Medium Mobile (≤ 576px) */
+/* ============================= */
+@media (max-width: 576px) {
+  .hero {
+    padding: 0px 5%;
+  }
+
+  .title {
+    justify-content: center;
+    font-size: 2.2rem;
+  }
+
+  .btnGroup {
+    flex-direction: column; /* Buttons stack on top of each other */
+    width: 100%;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+  }
+
+  /* Shrink spring further so it doesn't overflow screen width */
+  .scene {
+    width: 320px;
+    height: 320px;
+  }
+
+  .springWrapper {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* ============================= */
+/* 📱 Smallest Mobile (≤ 400px) */
+/* ============================= */
+@media (max-width: 400px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+
+  .scene {
+    width: 300px;
+    height: 300px;
+  }
+
+  .springWrapper {
+    width: 200px;
+    height: 200px;
+  }
+}

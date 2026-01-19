@@ -1,0 +1,169 @@
+.footer {
+  background-color: #050505;
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+  color: white;
+}
+
+.footer .brand {
+  letter-spacing: 4px;
+  font-size: 2rem;
+  font-family: "Bauhaus 93";
+  letter-spacing: 2px;
+}
+
+.brand span {
+  font-family: "Bauhaus 93";
+  font-size: 1rem;
+  color: #ff3344;
+}
+
+.tagline {
+  color: #777;
+  margin: 1rem 0 2rem;
+  font-size: 0.9rem;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* Base style: No one is selected by default */
+.socialCircle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #222;
+  color: #888; /* Dimmed icon color when inactive */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+/* Hover effect for all */
+.socialCircle:hover {
+  background: #333;
+  color: #ff3344;
+  transform: translateY(-3px);
+}
+
+/* Clicked/Active State: The neon glow appears only here */
+.socialCircle.active {
+  background: #ff3344;
+  color: white;
+  font-size: 1.2rem;
+  box-shadow: 0 0 20px rgba(255, 51, 68, 0.8), 0 0 40px rgba(255, 51, 68, 0.4);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #333, transparent);
+  margin-bottom: 1.5rem;
+}
+
+.copy {
+  color: #555;
+  font-size: 0.8rem;
+}
+/* ============================= */
+/* 📱 Small Mobile (≤ 480px) */
+/* ============================= */
+@media (max-width: 480px) {
+  .footer {
+    padding: 3rem 1.5rem 1.5rem;
+  }
+
+  .brand {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+
+  .tagline {
+    font-size: 0.8rem;
+    margin: 0.8rem 0 1.5rem;
+  }
+
+  .socials {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .socialCircle {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+  }
+
+  .copy {
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================= */
+/* 📱 Large Mobile & Small Tablets (481px–768px) */
+/* ============================= */
+@media (max-width: 768px) {
+  .footer {
+    padding: 3.5rem 2rem 2rem;
+  }
+
+  .brand {
+    font-size: 2.6rem;
+  }
+
+  .tagline {
+    font-size: 0.85rem;
+  }
+
+  .socialCircle {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* ============================= */
+/* 💻 Tablets & Small Laptops (769px–1024px) */
+/* ============================= */
+@media (max-width: 1024px) {
+  .brand {
+    font-size: 2.8rem;
+  }
+}
+
+/* ============================= */
+/* 🍎 iOS Touch & Zoom Fix */
+/* ============================= */
+@supports (-webkit-touch-callout: none) {
+  .socialCircle {
+    font-size: 16px; /* Prevents icon zoom on tap */
+  }
+}
+
+/* ============================= */
+/* 🤖 Android / Touch Devices */
+/* ============================= */
+@media (pointer: coarse) {
+  .socialCircle {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ============================= */
+/* 🖥️ Large Screens (≥ 1400px) */
+/* ============================= */
+@media (min-width: 1400px) {
+  .footer {
+    padding: 5rem 2rem 3rem;
+  }
+
+  .brand {
+    font-size: 3.4rem;
+  }
+}

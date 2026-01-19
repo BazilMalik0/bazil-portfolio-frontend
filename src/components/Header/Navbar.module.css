@@ -1,0 +1,141 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 5%;
+
+  /* Ensure no borders are visible */
+  border: none;
+
+  box-shadow: 
+    /* 1. TOP SHADOW: Inset, pointing DOWN (25px) */
+    /* Negative spread (-15px) prevents it from touching left/right */ inset
+      0 25px 30px -60px rgba(255, 0, 0, 0.8),
+    /* 2. BOTTOM SHADOW: Outer, pointing DOWN (25px) */
+      /* This creates a glow that spills out from the bottom edge */ 0 25px 30px -15px
+      rgba(255, 0, 0, 0.8);
+  color: white;
+}
+
+.navbar .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-family: "Bauhaus 93";
+}
+
+.logo span {
+  font-family: "Bauhaus 93";
+  font-size: 1rem;
+  color: #ff3344;
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.navLinks li.active a {
+  color: white;
+  border-bottom: 2px solid #ff3344;
+  padding-bottom: 5px;
+}
+
+.navLinks a:hover {
+  color: #ff3344;
+}
+/* ============================= */
+/* 📱 Small Mobile (≤ 767px) */
+/* ============================= */
+
+@media (max-width: 767px) {
+  .navbar {
+    padding: 1.5rem 5%;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .navLinks {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navLinks a {
+    font-size: 1rem;
+  }
+}
+
+/* ============================= */
+/* 📱 Large Mobile & Tablets (481px–768px) */
+/* ============================= */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1.8rem 6%;
+  }
+
+  .logo {
+    font-size: 2.2rem;
+  }
+
+  .navLinks a {
+    font-size: 1rem;
+  }
+}
+
+/* ============================= */
+/* 💻 Tablets & Small Laptops (769px–1024px) */
+/* ============================= */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 2rem 6%;
+  }
+
+  .navLinks {
+    gap: 1.5rem;
+  }
+}
+
+/* ============================= */
+/* 🍎 iOS Safari Fix */
+/* ============================= */
+@supports (-webkit-touch-callout: none) {
+  .navLinks a {
+    font-size: 16px; /* Prevents zoom on tap */
+  }
+}
+
+/* ============================= */
+/* 🤖 Android / Touch Devices */
+/* ============================= */
+@media (pointer: coarse) {
+  .navLinks a {
+    padding: 8px 0;
+  }
+}
+
+/* ============================= */
+/* 🖥️ Large Screens (≥ 1400px) */
+/* ============================= */
+@media (min-width: 1400px) {
+  .navbar {
+    padding: 2.5rem 8%;
+  }
+
+  .logo {
+    font-size: 2.8rem;
+  }
+}
