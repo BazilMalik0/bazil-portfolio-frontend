@@ -20,20 +20,20 @@ const Hero = () => {
 
   useEffect(() => {
     let index = 0;
-    setDisplayedSubtitle(""); // Clear on mount
+    setDisplayedSubtitle(""); // Reset the text
 
     const typingInterval = setInterval(() => {
-      if (index < fullSubtitle.length) {
-        // Appends one letter at a time: F, then R, then O...
-        setDisplayedSubtitle((prev) => prev + fullSubtitle.charAt(index));
+      // Use the length of the actual source data to be safe
+      if (index < hero.subtitle.length) {
+        setDisplayedSubtitle((prev) => hero.subtitle.slice(0, index + 1));
         index++;
       } else {
         clearInterval(typingInterval);
       }
-    }, 100); // Adjust this number (ms) to make typing faster or slower
+    }, 100);
 
     return () => clearInterval(typingInterval);
-  }, [fullSubtitle]);
+  }, [hero.subtitle]); // Watch the specific database field
   return (
     <>
       <section className={styles.hero}>
