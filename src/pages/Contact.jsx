@@ -86,7 +86,7 @@ const Contact = () => {
     if (formData.message.trim().length < 10) {
       setSnackbar({
         field: "message",
-        message: "Message must be at least 10 characters",
+        message: "Message must be at least 10 characters.",
       });
       return false;
     }
