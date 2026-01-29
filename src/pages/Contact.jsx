@@ -189,10 +189,13 @@ const Contact = () => {
       if (formData.file) {
         dataToSend.append("file", formData.file);
       }
-      const res = await fetch("http://localhost:5000/contact", {
-        method: "POST",
-        body: dataToSend,
-      });
+      const res = await fetch(
+        "https://bazil-portfolio-backend-1.onrender.com/contact",
+        {
+          method: "POST",
+          body: dataToSend,
+        },
+      );
 
       const data = await res.json();
 
