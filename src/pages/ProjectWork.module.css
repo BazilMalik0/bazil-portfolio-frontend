@@ -246,7 +246,7 @@
   gap: 1.5rem;
 }
 
-.sourceBtn {
+.visitBtn {
   background: transparent;
   color: white;
   border: 1px solid #ff3344;
@@ -259,13 +259,12 @@
   align-items: center; /* Vertically centers the icon and text */
   gap: 8px;
 }
-.sourceBtn:hover {
+.visitBtn:hover {
   color: black;
   background: white;
   transform: translateY(-2px);
   box-shadow: 0 0 25px rgba(255, 51, 68, 0.6);
 }
-
 /* ============================= */
 /* 📱 Small Mobile (≤ 480px) */
 /* ============================= */
@@ -274,39 +273,59 @@
     padding: 40px 5%;
   }
 
+  /* Force stack everything in a centered column */
   .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     margin-bottom: 3rem;
+    gap: 1rem;
+    width: 100%;
   }
 
   .mainTitle {
+    display: block;
+    margin: 0 auto !important; /* Forces horizontal center */
+    padding: 0;
     font-size: 2.1rem;
+    width: 100%;
+    text-align: center;
   }
 
   .sideSubtitle {
+    display: block;
+    margin: 0 auto !important;
     font-size: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .header .visitBtn {
+    margin: 1rem auto 0 auto;
+    width: 100%;
+    max-width: 250px;
   }
 
   .projectsContainer {
     gap: 5rem;
   }
 
-  .projectTitle {
-    font-size: 1.8rem;
+  .projectCard,
+  .reverse {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
   }
 
-  .projectDesc {
-    font-size: 0.95rem;
+  .techStack {
+    justify-content: center;
   }
 
   .btnGroup {
     flex-direction: column;
-    gap: 1rem;
-  }
-
-  .sourceBtn {
-    padding: 12px;
-    width: 100%;
-    text-align: center;
+    align-items: center;
   }
 }
 
@@ -318,24 +337,40 @@
     padding: 50px 6%;
   }
 
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.2rem;
+  }
+
   .mainTitle {
+    display: block;
+    margin: 0 auto !important;
     font-size: 2.4rem;
+    text-align: center;
+    width: 100%;
   }
 
   .sideSubtitle {
-    font-size: 1.05rem;
+    display: block;
+    margin: 0 auto !important;
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
   }
 
-  .projectsContainer {
-    gap: 6rem;
+  .projectCard,
+  .reverse {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .projectTitle {
-    font-size: 2.1rem;
-  }
-
-  .projectDesc {
-    font-size: 1rem;
+  .techStack,
+  .btnGroup {
+    justify-content: center;
   }
 }
 
@@ -343,46 +378,33 @@
 /* 💻 Tablets & Small Laptops (769px–1024px) */
 /* ============================= */
 @media (max-width: 1024px) {
-  .ProjectWorkSection {
-    padding: 55px 7%;
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
   }
 
   .mainTitle {
+    display: block;
+    margin: 0 auto !important;
     font-size: 2.7rem;
+    text-align: center;
+    width: 100%;
   }
 
-  .projectTitle {
-    font-size: 2.3rem;
-  }
-}
-
-/* ============================= */
-/* 🍎 iOS Safari Fix */
-/* ============================= */
-@supports (-webkit-touch-callout: none) {
-  .sourceBtn {
-    font-size: 16px; /* Prevent iOS zoom */
-  }
-}
-
-/* ============================= */
-/* 🤖 Android / Touch Devices */
-/* ============================= */
-@media (pointer: coarse) {
-  .sourceBtn {
-    padding: 14px 20px;
-  }
-}
-
-/* ============================= */
-/* 🖥️ Large Screens (≥ 1400px) */
-/* ============================= */
-@media (min-width: 1400px) {
-  .ProjectWorkSection {
-    padding: 70px 10%;
+  .sideSubtitle {
+    display: block;
+    margin: 0 auto !important;
+    text-align: center;
+    width: 100%;
   }
 
-  .mainTitle {
-    font-size: 3.4rem;
+  .projectCard,
+  .reverse {
+    flex-direction: column;
+    text-align: center;
   }
 }

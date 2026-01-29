@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./ProjectWork.module.css";
 import { projectsData } from "../data.js";
-import { FaGithub } from "react-icons/fa";
+import { RiLiveFill } from "react-icons/ri";
 
 const ProjectWork = () => {
   // ✅ UPDATED: State to track the array and the index
@@ -11,6 +11,36 @@ const ProjectWork = () => {
     index: 0,
     isOpen: false,
   });
+
+  const modalRef = React.useRef(null);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        // For Resume, use setIsViewing(false)
+        // For Hero, use setActiveCard(null)
+        // For ProjectWork, use setPreview(p => ({...p, isOpen: false}))
+        setPreview((prev) => ({ ...prev, isOpen: false }));
+      }
+    };
+
+    if (preview.isOpen) {
+      // The 'true' here is CRITICAL. It intercepts the key before anything else.
+      window.addEventListener("keydown", handleKeyDown, true);
+      document.body.style.overflow = "hidden";
+
+      // Manually force focus to the modal container
+      if (modalRef.current) {
+        modalRef.current.focus();
+      }
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown, true);
+      document.body.style.overflow = "unset";
+    };
+  }, [preview.isOpen]);
+
   // ✅ NAVIGATION FUNCTIONS
   const showNext = (e) => {
     e.stopPropagation();
@@ -51,11 +81,13 @@ const ProjectWork = () => {
       <AnimatePresence>
         {preview.isOpen && (
           <motion.div
+            ref={modalRef} // Attach the ref here
+            tabIndex="-1" // This makes the div focusable via code
             className={styles.overlay}
+            style={{ outline: "none" }} // Removes the yellow/blue focus border
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setPreview({ ...preview, isOpen: false })}
           >
             {/* Left Arrow */}
             <button
@@ -165,8 +197,8 @@ const ProjectCard = ({ project, index, onImageClick }) => {
         </div>
 
         <div className={styles.btnGroup}>
-          <a href={project.sourceLink} className={styles.sourceBtn}>
-            <FaGithub /> Source
+          <a href={project.visitLink} className={styles.visitBtn}>
+            <RiLiveFill /> Visit
           </a>
         </div>
       </div>

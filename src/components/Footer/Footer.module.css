@@ -44,21 +44,25 @@
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
+  font-size: 1.2rem; /* Keep consistent size */
+  border: none;
 }
 
 /* Hover effect for all */
 .socialCircle:hover {
   background: #333;
-  color: #ff3344;
+  /* Glow slightly on hover using the brand color variable */
+  color: var(--brand-color);
   transform: translateY(-3px);
 }
 
 /* Clicked/Active State: The neon glow appears only here */
 .socialCircle.active {
-  background: #ff3344;
+  background: var(--brand-gradient);
   color: white;
   font-size: 1.2rem;
-  box-shadow: 0 0 20px rgba(255, 51, 68, 0.8), 0 0 40px rgba(255, 51, 68, 0.4);
+  box-shadow: 0 0 20px var(--brand-color);
+  transform: scale(1.1); /* Slightly larger when active */
 }
 
 .divider {

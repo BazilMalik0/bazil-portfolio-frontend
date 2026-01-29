@@ -5,23 +5,53 @@ import Navbar from "./components/Header/Navbar";
 import Footer from "./components/Footer/Footer";
 import AppRoutes from "./routes/Routes";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
-import BackgroundParticle from "./components/LoadingScreen/BackgroundParticle";
+import backgroundImage from "./assets/background.webp";
 import MouseTrail from "./components/LoadingScreen/MouseTrail";
 import BackToTop from "./components/BackToTop/BackToTop";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isBlackout, setIsBlackout] = useState(false);
+  // ✅ NEW: Prevent blackout until user has interacted with the site
+  const [hasInteracted, setHasInteracted] = useState(false);
   const loopRef = useRef();
+  // ✅ NEW: Ref to store scroll position if needed (though CSS fix is preferred)
+  const scrollPos = useRef(0);
+
+  // ✅ Capture first click/tap to enable protection
+  useEffect(() => {
+    const enableProtection = () => setHasInteracted(true);
+    window.addEventListener("mousedown", enableProtection);
+    window.addEventListener("touchstart", enableProtection);
+    window.addEventListener("keydown", enableProtection);
+
+    return () => {
+      window.removeEventListener("mousedown", enableProtection);
+      window.removeEventListener("touchstart", enableProtection);
+      window.removeEventListener("keydown", enableProtection);
+    };
+  }, []);
 
   useEffect(() => {
-    if (!isBlackout) return;
+    if (isBlackout) {
+      // 🔒 Capture current position the moment blackout starts
+      scrollPos.current =
+        window.pageYOffset || document.documentElement.scrollTop;
 
-    const timer = setTimeout(() => {
-      setIsBlackout(false);
-    }, 1000); // ⏱ 2 seconds
+      const timer = setTimeout(() => {
+        setIsBlackout(false);
+      }, 1000);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    } else {
+      // 🔓 When blackout ends, force return to stored position
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: scrollPos.current,
+          behavior: "instant",
+        });
+      });
+    }
   }, [isBlackout]);
 
   useEffect(() => {
@@ -41,8 +71,12 @@ function App() {
 
     // 🔒 Focus loss detection loop
     const protectionLoop = () => {
-      if (!document.hasFocus() || document.visibilityState === "hidden") {
-        setIsBlackout(true);
+      // ✅ ONLY trigger blackout if the user has already interacted and we lose focus
+      if (
+        hasInteracted &&
+        (!document.hasFocus() || document.visibilityState === "hidden")
+      ) {
+        if (!isBlackout) setIsBlackout(true);
       }
       loopRef.current = requestAnimationFrame(protectionLoop);
     };
@@ -64,19 +98,23 @@ function App() {
         navigator.clipboard.writeText("");
       }
 
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
+      // Only prevent default if it's a protected key to avoid breaking scroll
+      if (e.ctrlKey || e.metaKey || e.altKey) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
     };
 
     // 🔒 Recovery
     const handleFocus = () => {
       setTimeout(() => {
-        if (document.hasFocus()) setIsBlackout(false);
-      }, 1000);
+        if (document.hasFocus()) {
+          setIsBlackout(false);
+        }
+      }, 300);
     };
 
-    window.addEventListener("contextmenu", disableRightClick);
+    // window.addEventListener("contextmenu", disableRightClick);
     window.addEventListener("keydown", handleKeyEvent, true);
     window.addEventListener("keyup", handleKeyEvent, true);
     // document
@@ -86,12 +124,12 @@ function App() {
     window.addEventListener("focus", handleFocus);
 
     return () => {
-      window.removeEventListener("contextmenu", disableRightClick);
+      // window.removeEventListener("contextmenu", disableRightClick);
       window.removeEventListener("keydown", handleKeyEvent, true);
       window.removeEventListener("keyup", handleKeyEvent, true);
       cancelAnimationFrame(loopRef.current);
     };
-  }, []);
+  }, [isBlackout, hasInteracted]); // ✅ Added hasInteracted to dependency
 
   return (
     <>
@@ -107,13 +145,18 @@ function App() {
           </p>
         </div>
       )}
-      <div className={isBlackout ? "App hidden-capture" : "App"}>
+      <div className={`App ${isBlackout ? "hidden-capture" : ""}`}>
         <MouseTrail />
         {isLoading ? (
           <LoadingScreen onComplete={() => setIsLoading(false)} />
         ) : (
           <div className="AppInner">
-            <BackgroundParticle />
+            {/* ✅ ADD THE IMAGE HERE */}
+            <img
+              src={backgroundImage}
+              alt="Red Smoke Cube Background"
+              className="background-image"
+            />
             <Navbar />
             <main>
               <AppRoutes />

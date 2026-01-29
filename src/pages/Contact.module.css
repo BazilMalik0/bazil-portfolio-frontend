@@ -86,7 +86,7 @@
 }
 
 .inputWrapper {
-  position: relative; /* Anchor for the floating error */
+  position: relative;
 }
 
 .customError {
@@ -173,6 +173,87 @@
   border-left: 1px solid #d32f2f;
   border-top: 1px solid #d32f2f;
   transform: rotate(45deg);
+}
+
+/* Dark Overlay for the popup */
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6); /* Slightly lighter backdrop */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px); /* Modern professional touch */
+}
+
+/* Professional Card Look */
+.popupCard {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  max-width: 400px; /* Small and professional */
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.popupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.popupClose {
+  background: #eee;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.popupClose:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
+.popupImg {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Logic for form file section when attached */
+.fileStatusContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
 @keyframes fadeIn {
@@ -296,7 +377,6 @@
     transform: translate(-50%, -10px);
   }
 }
-
 /* ============================= */
 /* 📱 Small Mobile (≤ 480px) */
 /* ============================= */
@@ -307,16 +387,20 @@
 
   .header {
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.5rem; /* Reduced gap for pro look */
     text-align: center;
+    justify-content: center; /* Ensures center alignment */
   }
 
   .mainTitle {
     font-size: 2.1rem;
+    margin-left: 0; /* REMOVED margin for perfect centering */
+    text-align: center;
   }
 
   .sideSubtitle {
     font-size: 1.4rem;
+    text-align: center;
   }
 
   .formTitle {
@@ -361,12 +445,14 @@
 
   .header {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: center; /* Changed from flex-start to center */
+    text-align: center;
+    gap: 0.8rem;
   }
 
   .mainTitle {
     font-size: 2.4rem;
+    margin-left: 0; /* REMOVED margin for perfect centering */
   }
 
   .sideSubtitle {
@@ -398,8 +484,16 @@
     padding: 40px 7%;
   }
 
+  .header {
+    flex-direction: column; /* Force stack for centering */
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
   .mainTitle {
     font-size: 2.7rem;
+    margin-left: 0; /* REMOVED margin for perfect centering */
   }
 
   .sideSubtitle {
@@ -408,42 +502,5 @@
 
   .grid {
     grid-template-columns: 1fr;
-  }
-}
-
-/* ============================= */
-/* 🍎 iOS Fixes */
-/* ============================= */
-@supports (-webkit-touch-callout: none) {
-  .input,
-  .textarea {
-    font-size: 16px; /* Prevents iOS zoom */
-  }
-}
-
-/* ============================= */
-/* 🤖 Android Touch Optimization */
-/* ============================= */
-@media (pointer: coarse) {
-  .submitBtn {
-    padding: 16px;
-  }
-
-  .input,
-  .textarea {
-    padding: 14px 16px;
-  }
-}
-
-/* ============================= */
-/* 🖥️ Ultra-Wide Screens (≥ 1400px) */
-/* ============================= */
-@media (min-width: 1400px) {
-  .container {
-    max-width: 1350px;
-  }
-
-  .mainTitle {
-    font-size: 3.4rem;
   }
 }

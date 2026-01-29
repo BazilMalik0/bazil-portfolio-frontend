@@ -319,7 +319,9 @@
   box-shadow: 0 0 100px #ff3344;
 
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* Hover effect */
@@ -348,6 +350,59 @@
   font-size: 0.9rem;
   line-height: 1.6;
 }
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal {
+  background: #111;
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  animation: scaleIn 0.25s ease;
+}
+
+.modal h3 {
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.modal p {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.closeBtn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6c63ff, #00c6ff);
+  color: #fff;
+  cursor: pointer;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 /* ============================= */
 /* 💻 Collapse / Menu Shift (≤ 1100px) */
 /* ============================= */
@@ -384,6 +439,7 @@
     height: 250px;
   }
 
+  /* Professional 2-Column Grid for Tablets/Laptops */
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -410,6 +466,7 @@
     gap: 1.5rem;
   }
   .scene {
+    justify-content: center;
     width: 340px;
     height: 340px;
   }
@@ -440,6 +497,7 @@
     margin-right: auto;
   }
   .scene {
+    justify-content: center;
     width: 330px;
     height: 330px;
   }
@@ -447,6 +505,26 @@
   .springWrapper {
     width: 230px;
     height: 230px;
+  }
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr); /* FORCED 2x2 */
+    gap: 1rem;
+    padding: 0 10px;
+  }
+
+  .card {
+    padding: 1.2rem;
+    border-radius: 12px;
+    border-width: 2px; /* Thinner lines look more "Pro" on small screens */
+    box-shadow: 0 0 40px rgba(255, 51, 68, 0.3); /* Softer glow for mobile */
+  }
+
+  .card .icon {
+    font-size: 1.8rem;
+  }
+
+  .card h4 {
+    font-size: 0.95rem;
   }
 }
 
@@ -475,6 +553,7 @@
 
   /* Shrink spring further so it doesn't overflow screen width */
   .scene {
+    justify-content: center;
     width: 320px;
     height: 320px;
   }
@@ -482,6 +561,18 @@
   .springWrapper {
     width: 220px;
     height: 220px;
+  }
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .card p {
+    font-size: 0.75rem; /* Micro-copy style */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit text height to keep cards uniform */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
@@ -503,12 +594,23 @@
   }
 
   .scene {
+    justify-content: center;
     width: 300px;
     height: 300px;
+    left: 15px;
   }
 
   .springWrapper {
     width: 200px;
     height: 200px;
+  }
+  .btnGroup {
+    flex-direction: column; /* Buttons stack on top of each other */
+    width: 100%;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
   }
 }

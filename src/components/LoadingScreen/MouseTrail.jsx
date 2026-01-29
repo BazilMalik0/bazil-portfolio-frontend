@@ -44,7 +44,7 @@ const MouseTrail = () => {
           0,
           this.x,
           this.y,
-          this.size
+          this.size,
         );
         gradient.addColorStop(0, `rgba(255, 0, 0, ${this.opacity})`);
         gradient.addColorStop(1, `rgba(0, 0, 0, 0)`);

@@ -13,7 +13,25 @@ body {
   color: white;
   overflow-x: hidden;
 }
+/* AppInner must be relative so children can position themselves */
+.AppInner {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
 
+/* Ensure your main content doesn't have a solid background */
+.content-area {
+  position: relative;
+  z-index: 1; /* Sits on top of weather */
+  background: transparent; /* Allows weather to show through */
+}
+
+/* Security Overlay must stay on the very top */
+.protection-overlay {
+  z-index: 9999;
+  /* ... existing styles */
+}
 /* Custom Scrollbar for the Neon aesthetic */
 ::-webkit-scrollbar {
   width: 8px;
@@ -51,13 +69,45 @@ body {
   touch-action: manipulation;
   overscroll-behavior: none;
 }
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  /* This ensures the image covers the screen without stretching */
+  object-fit: cover;
+  /* This keeps the cube and smoke centered */
+  object-position: center;
+
+  /* Places it behind everything else */
+  z-index: -1;
+
+  /* Prevents the image from interfering with clicks on buttons or links */
+  pointer-events: none;
+}
+
+.AppInner {
+  position: relative;
+  min-height: 100vh;
+  /* Ensure the container itself is transparent so the image shows through */
+  background: transparent !important;
+}
+
+/* Ensure your main content doesn't have a solid background color 
+   that would block the image */
+main {
+  background: transparent !important;
+}
+
 @media print {
   body {
     display: none !important;
   }
 }
 .blackout-message {
-  position: absolute;
+  position: fixed;
   inset: 0;
   display: flex;
   flex-direction: column; /* ⬅️ stack vertically */
@@ -92,18 +142,43 @@ body {
   transition: none !important; /* Must be instant */
 }
 
-/* 🔒 Instant Blackout Activation */
-.force-blackout {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: all !important;
+/* Ensure the overlay covers everything fixed */
+.protection-overlay.force-blackout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 999999;
+  display: block;
 }
 
 /* 🚫 Hide everything from the GPU renderer */
 .App.hidden-capture {
-  filter: brightness(0) !important;
-  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  /* This prevents the page from collapsing to 0 height */
+  pointer-events: none !important;
+  user-select: none !important;
 }
+/* Add this to your CSS file */
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the screen without stretching */
+  z-index: -1; /* Places it behind all other elements */
+  pointer-events: none; /* Allows clicks to pass through to buttons/links */
+}
+
+.AppInner {
+  position: relative;
+  min-height: 100vh;
+}
+
 /* ============================= */
 /* 📱 Small Mobile (≤ 480px) */
 /* ============================= */

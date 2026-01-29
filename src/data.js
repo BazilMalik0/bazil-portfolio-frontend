@@ -8,11 +8,57 @@ export const portfolioData = {
   ],
   hero: {
     title: "Hi, I’m Bazil. I Build Modern Websites for You",
-    subtitle: "FRONTEND DEVELOPER & UI DESIGNER",
+    subtitle: "FRONTEND DEVELOPER & UI/UX DESIGNER",
     description:
       "If you want a professional, fast, and stunning website for your business or personal brand, you’re in the right place. My passion is turning complex ideas into intuitive interfaces that captivate users and push boundaries.",
-    image: "https://via.placeholder.com/400x400", // Replace with your actual image path
+    image: "https://via.placeholder.com/400x400",
   },
+
+  whatIDo: [
+    {
+      id: 1,
+      title: "UI/UX Enhancement",
+      short: "Crafting intuitive and visually appealing interfaces.",
+      details:
+        "I focus on user-centered design principles, accessibility standards, and modern UI trends to create experiences that are not only beautiful but also easy to use and highly engaging.",
+    },
+    {
+      id: 2,
+      title: "Frontend Development",
+      short: "Building responsive and scalable applications.",
+      details:
+        "Using React, Next.js, and modern JavaScript, I build fast, maintainable, and scalable frontend architectures with clean code and reusable components.",
+    },
+    {
+      id: 3,
+      title: "Performance Optimization",
+      short: "Improving website speed and smooth interactions.",
+      details:
+        "I optimize assets, reduce bundle sizes, implement lazy loading, and improve rendering performance to ensure lightning-fast experiences.",
+    },
+    {
+      id: 4,
+      title: "Responsive Design",
+      short: "Layouts that adapt perfectly to all screens.",
+      details:
+        "I ensure your website looks and works perfectly on mobile, tablet, and desktop devices using modern CSS and responsive techniques.",
+    },
+    {
+      id: 5,
+      title: "Deployment & Hosting",
+      short: "Launching production-ready websites.",
+      details:
+        "From Vercel and Netlify to custom servers, I deploy secure, SEO-friendly, and optimized applications with CI/CD best practices.",
+    },
+    {
+      id: 6,
+      title: "Maintenance & Support",
+      short: "Long-term stability and updates.",
+      details:
+        "I provide continuous support, bug fixes, performance checks, and feature enhancements to keep your website running smoothly.",
+    },
+  ],
+
   footer: {
     brand: "Malik.Dev",
     tagline:
@@ -34,6 +80,7 @@ export const portfolioData = {
     copyright: "© 2024 Malik.Dev All rights reserved.",
   },
 };
+
 // Resume data
 import cv from "../public/BAZIL BILAL RESUME.pdf";
 export const resumeData = {
@@ -46,7 +93,7 @@ export const resumeData = {
         duration: "July 2025 - Sep 2025",
         // Full AWS Project details included here
         description:
-          "Developed 'AWS Infotech', a modern company portfolio website using ReactJS, Framer Motion, and Tailwind CSS[cite: 26, 27]. Implemented smooth animations, interactive sliders with Swiper, and focused on clean UI/UX and cross-device compatibility[cite: 29, 30].",
+          "Developed 'AWS Infotech', a modern company portfolio website using ReactJS, Framer Motion, and Tailwind CSS. Implemented smooth animations, interactive sliders with Swiper, and focused on clean UI/UX and cross-device compatibility.",
         tech: "ReactJS, Framer Motion, Material UI, Tailwind CSS, Swiper",
       },
       {
@@ -54,7 +101,7 @@ export const resumeData = {
         company: "Engineers' Computer Hub | Pulwama, J&K",
         duration: "June 2024 - July 2025",
         description:
-          "Built a 'Hotel Management System' to manage bookings and staff operations[cite: 33, 37]. Developed dynamic interfaces in ReactJS and secure RESTful APIs with Express.js[cite: 38].",
+          "Built a 'Hotel Management System' to manage bookings and staff operations. Developed dynamic interfaces in ReactJS and secure RESTful APIs with Express.js.",
         tech: "ReactJS, Express.js, MongoDB",
       },
       {
@@ -62,7 +109,7 @@ export const resumeData = {
         company: "PHP & MySQL",
         duration: "Academic Period",
         description:
-          "Developed a web-based system for event scheduling and venue reservations[cite: 41, 42]. Designed a MySQL database to handle secure bookings and real-time status updates[cite: 43, 44].",
+          "Developed a web-based system for event scheduling and venue reservations. Designed a MySQL database to handle secure bookings and real-time status updates.",
         tech: "PHP,Bootstrap,MySQL",
       },
     ],
@@ -71,7 +118,7 @@ export const resumeData = {
         degree: "Bachelor of Computer Applications",
         institution: "UNIVERSITY OF KASHMIR",
         duration: "CGPA: 5.70",
-        location: "Srinagar, India [cite: 46, 47, 48]",
+        location: "Srinagar, India ",
       },
     ],
   },
@@ -149,7 +196,7 @@ export const projectsData = [
     ],
     images: [aws1, aws2, aws3],
 
-    sourceLink: "https://github.com/BazilMalik0",
+    visitLink: "https://aws-infotech.netlify.app/",
   },
   {
     id: 2,
@@ -165,7 +212,7 @@ export const projectsData = [
       "Swiper.js",
     ],
     images: [ech1, ech2, ech3],
-    sourceLink: "https://github.com/BazilMalik0",
+    visitLink: "https://ech-i.netlify.app/",
   },
   {
     id: 3,
@@ -181,7 +228,7 @@ export const projectsData = [
       "Swiper.js",
     ],
     images: [hotel1, hotel2, hotel3],
-    sourceLink: "https://github.com/BazilMalik0",
+    visitLink: "https://hotel-app-reg.netlify.app/",
   },
   {
     id: 4,
@@ -198,7 +245,7 @@ export const projectsData = [
       "Responsive Design",
     ],
     images: [quiz1, quiz2, quiz3],
-    sourceLink: "https://github.com/BazilMalik0",
+    visitLink: "https://quiz-app-g.netlify.app/",
   },
   {
     id: 5,
@@ -216,7 +263,7 @@ export const projectsData = [
       "Collision Detection",
     ],
     images: [snake1, snake2, snake3],
-    sourceLink: "https://github.com/BazilMalik0",
+    visitLink: "https://snake-gamee-g.netlify.app/",
   },
   {
     id: 6,
@@ -233,6 +280,6 @@ export const projectsData = [
       "Array Mapping",
     ],
     images: [tictacto1, tictacto2, tictacto3],
-    sourceLink: "https://github.com/BazilMalik0",
+    visitLink: "https://tic-tac-toee-g.netlify.app/",
   },
 ];

@@ -1,4 +1,5 @@
 .navbar {
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,11 +10,11 @@
 
   box-shadow: 
     /* 1. TOP SHADOW: Inset, pointing DOWN (25px) */
-    /* Negative spread (-15px) prevents it from touching left/right */ inset
-      0 25px 30px -60px rgba(255, 0, 0, 0.8),
+    /* Negative spread (-15px) prevents it from touching left/right */
+    inset 0 25px 30px -60px rgba(255, 0, 0, 0.8),
     /* 2. BOTTOM SHADOW: Outer, pointing DOWN (25px) */
-      /* This creates a glow that spills out from the bottom edge */ 0 25px 30px -15px
-      rgba(255, 0, 0, 0.8);
+    /* This creates a glow that spills out from the bottom edge */ 0 25px
+      30px -15px rgba(255, 0, 0, 0.8);
   color: white;
 }
 
